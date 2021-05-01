@@ -1,22 +1,22 @@
 # Workflow for lab management and animal management
 
 This workflow builds a workflow to save the information of lab management and animal management, using the following datajoint elements
-+ [elements-lab](https://github.com/datajoint/elements-lab)
-+ [elements-animal](https://github.com/datajoint/elements-animal)
++ [element-lab](https://github.com/datajoint/element-lab)
++ [element-animal](https://github.com/datajoint/element-animal)
 
 This repository provides demonstrations for:
-Set up a workflow using different elements (see [workflow_imaging/pipeline.py](workflow_imaging/pipeline.py))
+Set up a workflow using different elements (see [workflow_animal/pipeline.py](workflow_animal/pipeline.py))
 
 ## Workflow architecture
-The lab and animal management workflow presented here uses components from two DataJoint elements, elements-lab, and elements-animal assembled together to a functional workflow.
+The lab and animal management workflow presented here uses components from two DataJoint elements, element-lab, and element-animal assembled together to a functional workflow.
 
-### elements-lab
+### element-lab
 
 ![lab](images/lab_diagram.svg)
 
-### elements-animal
+### element-animal
 
-elements-animal contains two modules, `subject` and `genotyping`.
+element-animal contains two modules, `subject` and `genotyping`.
 
 `subject` contains basic information of subjects.
 ![subject](images/subject_diagram.svg)
@@ -27,7 +27,7 @@ elements-animal contains two modules, `subject` and `genotyping`.
 
 This workflow serves as an example of the upstream part of a typical data workflow, for examples using these two elements more intact workflows, refer to:
 
-+ [workflow-ephys]https://github.com/datajoint/workflow-ephys
++ [workflow-array-ephys]https://github.com/datajoint/workflow-array-ephys
 + [workflow-calcium-imaging]https://github.com/datajoint/workflow-calcium-imaging
 
 
@@ -86,7 +86,7 @@ If no such modification required, using `pip install .` is sufficient
 ### Step 4 - Jupyter Notebook
 + Register an IPython kernel with Jupyter
     ```
-    ipython kernel install --name=workflow-calcium-imaging
+    ipython kernel install --name=workflow-animal
     ```
 
 ### Step 5 - Configure the `dj_local_conf.json`
