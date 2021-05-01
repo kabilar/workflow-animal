@@ -28,7 +28,7 @@ elements-animal contains two modules, `subject` and `genotyping`.
 This workflow serves as an example of the upstream part of a typical data workflow, for examples using these two elements more intact workflows, refer to:
 
 + [workflow-ephys]https://github.com/datajoint/workflow-ephys
-+ [workflow-imaging]https://github.com/datajoint/workflow-imaging
++ [workflow-calcium-imaging]https://github.com/datajoint/workflow-calcium-imaging
 
 
 ## Installation instructions
@@ -86,7 +86,7 @@ If no such modification required, using `pip install .` is sufficient
 ### Step 4 - Jupyter Notebook
 + Register an IPython kernel with Jupyter
     ```
-    ipython kernel install --name=workflow-imaging
+    ipython kernel install --name=workflow-calcium-imaging
     ```
 
 ### Step 5 - Configure the `dj_local_conf.json`
@@ -157,7 +157,7 @@ Please refer to the [DataJoint Labbook page](https://github.com/datajoint/datajo
 
 ## Development mode installation
 
-This method allows you to modify the source code for `workflow-imaging`, `element-calcium-imaging`, `element-animal`, and `element-lab`.
+This method allows you to modify the source code for `workflow-calcium-imaging`, `element-calcium-imaging`, `element-animal`, and `element-lab`.
 
 + Launch a new terminal and change directory to where you want to clone the repositories
     ```
