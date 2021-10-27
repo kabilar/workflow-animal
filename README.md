@@ -27,8 +27,8 @@ element-animal contains two modules, `subject` and `genotyping`.
 
 This workflow serves as an example of the upstream part of a typical data workflow, for examples using these two elements more intact workflows, refer to:
 
-+ [workflow-array-ephys]https://github.com/datajoint/workflow-array-ephys
-+ [workflow-calcium-imaging]https://github.com/datajoint/workflow-calcium-imaging
++ [workflow-array-ephys](https://github.com/datajoint/workflow-array-ephys)
++ [workflow-calcium-imaging](https://github.com/datajoint/workflow-calcium-imaging)
 
 
 ## Installation instructions
