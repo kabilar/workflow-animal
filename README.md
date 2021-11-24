@@ -157,7 +157,7 @@ Please refer to the [DataJoint Labbook page](https://github.com/datajoint/datajo
 
 ## Development mode installation
 
-This method allows you to modify the source code for `workflow-imaging`, `elements-imaging`, `elements-animal`, and `elements-lab`.
+This method allows you to modify the source code for `workflow-calcium-imaging`, `element-calcium-imaging`, `element-animal`, and `element-lab`.
 
 + Launch a new terminal and change directory to where you want to clone the repositories
     ```
