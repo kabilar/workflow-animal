@@ -2,7 +2,7 @@ import pathlib
 import csv
 import re
 
-from workflow_session.pipeline import lab, Source, Lab, Protocol, User, Location, subject, genotyping, session
+from workflow_session.pipeline import lab, subject, session
 
 from workflow_session.paths import get_root_data_dir
 import element_data_loader.utils

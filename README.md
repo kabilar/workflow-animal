@@ -1,14 +1,15 @@
-# Workflow for lab management and animal management
+# Workflow for lab, subject and session management
 
-This workflow builds a workflow to save the information of lab management and animal management, using the following datajoint elements
+This directory provides an example workflow to save the information related to lab, subject, and session metadata data management, using the following datajoint elements
 + [element-lab](https://github.com/datajoint/element-lab)
 + [element-animal](https://github.com/datajoint/element-animal)
++ [element-session](https://github.com/datajoint/element-session)
 
 This repository provides demonstrations for:
 Set up a workflow using different elements (see [workflow_animal/pipeline.py](workflow_animal/pipeline.py))
 
 ## Workflow architecture
-The lab and animal management workflow presented here uses components from two DataJoint elements, element-lab, and element-animal assembled together to a functional workflow.
+The lab and animal management workflow presented here uses components from two DataJoint elements (element-lab, element-animal and element-session) assembled together to a functional workflow.
 
 ### element-lab
 
@@ -25,7 +26,9 @@ element-animal contains two modules, `subject` and `genotyping`.
 `genotyping` is designed for labs that handle animal care and genotyping themselves, which is optional.
 ![genotyping](images/genotyping_diagram.svg)
 
-This workflow serves as an example of the upstream part of a typical data workflow, for examples using these two elements more intact workflows, refer to:
+`session` is designed to handle metadata related to data collection, including collection datetime, file paths, and notes. 
+
+This workflow serves as an example of the upstream part of a typical data workflow, for examples using these elements more intact workflows, refer to:
 
 + [workflow-array-ephys](https://github.com/datajoint/workflow-array-ephys)
 + [workflow-calcium-imaging](https://github.com/datajoint/workflow-calcium-imaging)
@@ -79,8 +82,8 @@ From the root of the cloned repository directory:
     ```
 
 Note: the `-e` flag will install this repository in editable mode,
-in case there's a need to modify the code (e.g. the `pipeline.py` or `paths.py` scripts).
-If no such modification required, using `pip install .` is sufficient
+in case you'd like to to modify the code (e.g. the `pipeline.py` or `paths.py` scripts).
+If no such modification required, using `pip install .` is sufficient.
 
 
 ### Step 4 - Jupyter Notebook
