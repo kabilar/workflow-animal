@@ -17,7 +17,7 @@ with open(path.join(here, 'requirements.txt')) as f:
     requirements = f.read().splitlines()
 
 setup(
-    name='workflow-animal',
+    name='workflow-session',
     version='0.0.1',
     description="DataJoint Elements for Animal Management",
     long_description=long_description,
