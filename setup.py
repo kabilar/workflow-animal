@@ -6,11 +6,12 @@ import sys
 here = path.abspath(path.dirname(__file__))
 
 long_description = """"
-# Workflow for lab management and animal management
+# Workflow for lab, animal, and session management
 
 Build a workflow for lab management and animal metadata using DataJoint Elements
-+ [elements-lab](https://github.com/datajoint/elements-lab)
-+ [elements-animal](https://github.com/datajoint/elements-animal)
++ [elements-lab](https://github.com/datajoint/element-lab)
++ [elements-animal](https://github.com/datajoint/element-animal)
++ [elements-session](https://github.com/datajoint/element-session)
 """
 
 with open(path.join(here, 'requirements.txt')) as f:
@@ -24,8 +25,8 @@ setup(
     author='DataJoint NEURO',
     author_email='info@vathes.com',
     license='MIT',
-    url='https://github.com/datajoint/workflow-animal',
-    keywords='neuroscience lab-management animal-management datajoint',
+    url='https://github.com/datajoint/workflow-session',
+    keywords='neuroscience lab-management animal-management session-management datajoint',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
     install_requires=requirements,
 )
