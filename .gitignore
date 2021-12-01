@@ -111,8 +111,9 @@ ENV/
 # datajoint
 dj_local_c*.json
 
-# notes
+# notes, output nwb file from export NB
 temp*
+*nwb
 
 # emacs
 **/*~
