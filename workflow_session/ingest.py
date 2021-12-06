@@ -57,7 +57,10 @@ def ingest_sessions(session_csv_path='./user_data/session/sessions.csv'):
     print(f'\n---- Insert {len(input_sessions)} entry(s) into session.Session ----')
     session.Session.insert(input_sessions, skip_duplicates=True, ignore_extra_fields=True)
     session.SessionDirectory.insert(input_sessions, skip_duplicates=True, ignore_extra_fields=True)
-    session.SessionNote.insert(input_sessions, skip_duplicates=True, ignore_extra_fields=True)
+
+    ## Type Error: 'NoneType' object is not iterable
+    # session.SessionNote.insert(input_sessions, skip_duplicates=True, ignore_extra_fields=True)
+
 
 if __name__ == '__main__':
     ingest_lab()

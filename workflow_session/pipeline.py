@@ -13,10 +13,11 @@ if 'custom' not in dj.config:
 db_prefix = dj.config['custom'].get('database.prefix', '')
 
 
-# Activate "lab", "subject", "session" schema ----------------------------------
+# Activate "lab", "subject", "session" schema -------------
 
 lab.activate(db_prefix + 'lab')
 
 subject.activate(db_prefix + 'subject', linking_module=__name__)
 
+Experimenter = lab.User
 session.activate(db_prefix + 'session', linking_module=__name__)
