@@ -1,7 +1,7 @@
 import datajoint as dj
-from elements_lab import lab
-from elements_animal import subject, genotyping
-from elements_lab.lab import Source, Lab, Protocol, User, Location
+from element_lab import lab
+from element_animal import subject, genotyping
+from element_lab.lab import Source, Lab, Protocol, User, Location
 
 
 if 'custom' not in dj.config:
