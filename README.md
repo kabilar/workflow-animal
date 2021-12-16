@@ -6,12 +6,14 @@ This directory provides an example workflow to save the information related to l
 + [element-session](https://github.com/datajoint/element-session)
 
 This repository provides demonstrations for:
-Set up a workflow using different elements (see [pipeline.py](workflow_session/pipeline.py))
+Setting up a workflow using different elements (see [pipeline.py](workflow_session/pipeline.py))
 
 ## Workflow architecture
-The lab and animal management workflow presented here uses components from two DataJoint elements (element-lab, element-animal and element-session) assembled together to a functional workflow.
+The lab and animal management workflow presented here uses components from two DataJoint elements (element-lab, element-animal and element-session) assembled together into a functional workflow.
 
 ### element-lab
+
+element-lab is used for all lab-general metadata, including personnel and projects. Many fields are optional, but may help for keeping track of lab members for multi-site projects or exporting data for publication.
 
 ![lab](images/lab_diagram.svg)
 
@@ -22,15 +24,15 @@ element-animal contains two modules, `subject` and `genotyping`.
 `subject` contains basic information of subjects.
 ![subject](images/subject_diagram2.svg)
 
-`genotyping` is designed for labs that handle animal care and genotyping themselves, which is optional.
+`genotyping` is designed for labs that handle animal care and genetic information themselves, which is optional.
 ![genotyping](images/genotyping_diagram2.svg)
 
 ### element-session
-`session` is designed to handle metadata related to data collection, including collection datetime, file paths, and notes. Most workflows will include element-session as a starting point for further data entry.
+`session` is designed to handle metadata related to data collection, including collection date-time, file paths, and notes. Most workflows will include element-session as a starting point for further data entry.
 ![session](images/session_diagram2.png)
 
 ### This workflow
-This workflow serves as an example of the upstream part of a typical data workflow, for examples using these elements more intact workflows, refer to:
+This workflow serves as an example of the upstream part of a typical data workflow, for examples using these elements in tandem with other data collection modalities, refer to:
 
 + [workflow-array-ephys](https://github.com/datajoint/workflow-array-ephys)
 + [workflow-calcium-imaging](https://github.com/datajoint/workflow-calcium-imaging)
@@ -132,7 +134,7 @@ create a new file `dj_local_conf.json` with the following template:
 }
 ```
 
-+ Specify database's `hostname`, `username`, and `password` properly.
++ Specify database's `hostname`, `username`, and `password` according to the database you plan to use (see [set-up instructions here](https://tutorials.datajoint.io/setting-up/get-database.html)).
 
 + Specify a `database.prefix` to create the schemas.
 
@@ -144,7 +146,9 @@ create a new file `dj_local_conf.json` with the following template:
 
 ## Interacting with the DataJoint pipeline and exploring data
 
-+ Connect to database and import tables
++ [Connect to database](https://tutorials.datajoint.io/setting-up/get-database.html)
+
++ Import tables
     ```
     from workflow_session.pipeline import *
     ```
