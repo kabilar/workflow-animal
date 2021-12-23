@@ -3,4 +3,4 @@ element-lab
 element-animal
 element-session
 ipykernel
-pynwb==1.4.0
+pynwb
