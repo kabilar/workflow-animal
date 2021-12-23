@@ -1,2 +1,4 @@
-user, user_role, user_email, user_cellphone
-Sherlock, PI, Sherlock@BakerSt.com, +44 20 7946 0344
+lab,user,user_role,user_email,user_cellphone
+LabA,Sherlock,PI,Sherlock@BakerSt.com,+44 20 7946 0344
+LabA,Watson,Dr,DrWatson@BakerSt.com,+44 73 8389 1763
+LabB,Dr. Candace Pert,PI,Pert@gmail.com,+44 74 4046 5899

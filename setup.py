@@ -20,9 +20,9 @@ with open(path.join(here, 'requirements.txt')) as f:
 setup(
     name='workflow-session',
     version='0.0.1',
-    description="DataJoint Elements for Animal Management",
+    description="DataJoint Elements for Lab, Animal and Session Management",
     long_description=long_description,
-    author='DataJoint NEURO',
+    author='DataJoint',
     author_email='info@vathes.com',
     license='MIT',
     url='https://github.com/datajoint/workflow-session',

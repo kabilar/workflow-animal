@@ -33,6 +33,8 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
                 pubs_csv_path='./user_data/lab/publications.csv',
                 keyw_csv_path='./user_data/lab/keywords.csv',
                 protocol_csv_path='./user_data/lab/protocols.csv',
+                users_csv_path='./user_data/lab/users.csv',
+                projusers_csv_path='./user_data/lab/projusers.csv',
                 skip_duplicates=True):
     """
     Inserts data from a series of csvs into their corresponding lab schema tables.
@@ -42,16 +44,21 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
     :param pubs_csv_path:     relative path of publication csv
     :param keyw_csv_path:     relative path of keyword csv
     :param protocol_csv_path: relative path of protocol csv
+    :param users_csv_path:    relative path of users csv
     :param skip_duplicates=True: datajoint insert function param
     """
 
     # List with repeats for when mult dj.tables fed by same CSV
     csvs = [lab_csv_path, lab_csv_path,
             project_csv_path, pubs_csv_path, keyw_csv_path,
-            protocol_csv_path, protocol_csv_path]
+            protocol_csv_path, protocol_csv_path,
+            users_csv_path,users_csv_path,users_csv_path,
+            projusers_csv_path]
     tables=[lab.Lab(), lab.Location(),
             lab.Project(), lab.Project.Publication(), lab.Project.Keywords(),
-            lab.Protocol(), lab.ProtocolType()]
+            lab.ProtocolType(), lab.Protocol(),
+            lab.UserRole(), lab.User(), lab.LabMembership(),
+            lab.ProjectUser()]
 
     ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
 
