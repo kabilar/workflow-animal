@@ -5,7 +5,7 @@
 
 from . import (dj_config, pipeline, lab_csv,
                lab_project_csv, lab_user_csv, lab_publications_csv,
-               lab_keywords_csv, lab_protocol_csv, lab_user_csv,
+               lab_keywords_csv, lab_protocol_csv,
                lab_project_users_csv, ingest_lab,
                subjects_csv, ingest_subjects,
                sessions_csv, ingest_sessions)
