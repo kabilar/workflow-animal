@@ -5,7 +5,8 @@ from element_animal import subject, genotyping
 from element_session import session
 
 from element_animal.subject import Subject
-from element_animal.genotyping import Sequence, BreedingPair, Cage, SubjectCaging, GenotypeTest
+from element_animal.genotyping import Sequence, BreedingPair, Cage,\
+                                      SubjectCaging, GenotypeTest
 from element_lab.lab import Source, Lab, Protocol, User, Project
 from element_session.session import Session
 

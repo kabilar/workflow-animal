@@ -1,7 +1,8 @@
-import sys
-import pathlib
+'''Tests ingestion into schema tables: Lab, Subject, Session
+    1. Assert length of populating data from __innit__
+    2. Assert exact matches of inserted data fore key tables
+'''
 
-import workflow_session
 from . import (dj_config, pipeline, lab_csv,
                lab_project_csv, lab_user_csv, lab_publications_csv,
                lab_keywords_csv, lab_protocol_csv, lab_user_csv,
@@ -25,24 +26,26 @@ def test_ingest_lab(pipeline, ingest_lab,
     assert len(lab.ProtocolType()) == 2
 
     labs, _ = lab_csv
-    for l in labs[1:]:
-        l = l.split(",")
-        assert (lab.Lab & {'lab':l[0]}).fetch1('lab_name')==l[1]
+    for this_lab in labs[1:]:
+        lab_values = this_lab.split(",")
+        assert (lab.Lab & {'lab': lab_values[0]}
+                ).fetch1('lab_name') == lab_values[1]
 
     projects, _ = lab_project_csv
-    for p in projects[1:]:
-        p = p.split(",")
-        assert (lab.Project & {'project':p[0]}
-                ).fetch1('project_description')==p[1]
+    for this_project in projects[1:]:
+        project_values = this_project.split(",")
+        assert (lab.Project & {'project': project_values[0]}
+                ).fetch1('project_description') == project_values[1]
 
     protocols, _ = lab_protocol_csv
-    for p in protocols[1:]:
-        p = p.split(",")
-        assert (lab.Protocol & {'protocol':p[0]}
-                ).fetch1('protocol_type')==p[1]
+    for this_protocol in protocols[1:]:
+        protocol_values = this_protocol.split(",")
+        assert (lab.Protocol & {'protocol': protocol_values[0]}
+                ).fetch1('protocol_type') == protocol_values[1]
 
-    ## Does not have example data:
+    # Does not have example data:
     # assert len(lab.Source()) == 0
+
 
 def test_ingest_subjects(pipeline, subjects_csv, ingest_subjects):
     """Check length of subject.Subject"""
@@ -50,13 +53,14 @@ def test_ingest_subjects(pipeline, subjects_csv, ingest_subjects):
     assert len(subject.Subject()) == 2
 
     subjects, _ = subjects_csv
-    for s in subjects[1:]:
-        s = s.split(",")
-        assert (subject.Subject & {'subject':s[0]}
-                ).fetch1('subject_description')==s[3]
+    for this_subject in subjects[1:]:
+        subject_values = this_subject.split(",")
+        assert (subject.Subject & {'subject': subject_values[0]}
+                ).fetch1('subject_description') == subject_values[3]
 
-    ## Does not have example data:
+    # Does not have example data:
     # assert len(genotyping.Sequence()) == 0
+
 
 def test_ingest_sessions(pipeline, sessions_csv, ingest_sessions):
     """Check length/contents of Session.SessionDirectory"""
