@@ -17,11 +17,11 @@ def ingest_general(csvs, tables,               # take list of csvs/dj tables
         :param csvs: list of relative paths to CSV files
         :param tables: list of datajoint tables with ()
     """
-    for insert, table in zip(csvs, tables):    # loop through lists
-        with open(insert, newline='') as f:    # read csvs
+    for insert, table in zip(csvs, tables):
+        with open(insert, newline='') as f:
             data = list(csv.DictReader(f, delimiter=','))
-        prev_len = len(table)                  # measure prev length
-        table.insert(data, skip_duplicates=skip_duplicates, # insert
+        prev_len = len(table)
+        table.insert(data, skip_duplicates=skip_duplicates,
               ignore_extra_fields=True)        # must be true for csvs w/mult tables
         insert_len = len(table) - prev_len     # report length change
         print(f'\n---- Inserting {insert_len} entry(s) into {table.table_name} ----')
@@ -29,13 +29,13 @@ def ingest_general(csvs, tables,               # take list of csvs/dj tables
     # TODO: permit embedded lists
 
 def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
-                project_csv_path='./user_data/lab/projects.csv',
-                pubs_csv_path='./user_data/lab/publications.csv',
-                keyw_csv_path='./user_data/lab/keywords.csv',
-                protocol_csv_path='./user_data/lab/protocols.csv',
-                users_csv_path='./user_data/lab/users.csv',
-                projusers_csv_path='./user_data/lab/projusers.csv',
-                skip_duplicates=True):
+               project_csv_path='./user_data/lab/projects.csv',
+               publication_csv_path='./user_data/lab/publications.csv',
+               keyword_csv_path='./user_data/lab/keywords.csv',
+               protocol_csv_path='./user_data/lab/protocols.csv',
+               users_csv_path='./user_data/lab/users.csv',
+               project_user_csv_path='./user_data/lab/project_users.csv',
+               skip_duplicates=True):
     """
     Inserts data from a series of csvs into their corresponding lab schema tables.
     By default, uses data from workflow_session/user_data/lab/
@@ -50,10 +50,10 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
 
     # List with repeats for when mult dj.tables fed by same CSV
     csvs = [lab_csv_path, lab_csv_path,
-            project_csv_path, pubs_csv_path, keyw_csv_path,
+            project_csv_path, publication_csv_path, keyword_csv_path,
             protocol_csv_path, protocol_csv_path,
             users_csv_path,users_csv_path,users_csv_path,
-            projusers_csv_path]
+            project_user_csv_path]
     tables=[lab.Lab(), lab.Location(),
             lab.Project(), lab.Project.Publication(), lab.Project.Keywords(),
             lab.ProtocolType(), lab.Protocol(),
@@ -62,11 +62,11 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
 
     ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
 
-def ingest_subjects(subject_csv_path='./user_data/animal/subjects.csv',
+def ingest_subjects(subject_csv_path='./user_data/subject/subjects.csv',
                     skip_duplicates=True):
     """
     Inserts data from a subject csv into corresponding subject schema tables
-    By default, uses data from workflow_session/user_data/animal/
+    By default, uses data from workflow_session/user_data/subject/
     :param subject_csv_path:     relative path of subject csv
     :param skip_duplicates=True: datajoint insert function param
     """

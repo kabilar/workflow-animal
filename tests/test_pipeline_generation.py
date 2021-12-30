@@ -7,12 +7,12 @@ def test_generate_pipeline(pipeline):
     subject = pipeline['subject']
     lab     = pipeline['lab']
 
-    # test connection from lab to lab/subject
-    lab_membership, loc_tbl, subjlab_tbl = lab.Lab.children(as_objects=True)
-    # assert lab_tbl.full_table_name      == lab.Lab.full_table_name
-    assert loc_tbl.full_table_name      == lab.Location.full_table_name
-    assert subjlab_tbl.full_table_name  == subject.Subject.Lab.full_table_name
+    # test connection Lab->schema children, and Lab->Subject.Lab
+    lab_membership, loc_tbl, subject_lab_tbl = lab.Lab.children(as_objects=True)
+    assert lab_membership.full_table_name == lab.LabMembership.full_table_name
+    assert loc_tbl.full_table_name == lab.Location.full_table_name
+    assert subject_lab_tbl.full_table_name == subject.Subject.Lab.full_table_name
 
-    # test connection from lab to lab/subject
+    # test connection Subject->Session
     subject_tbl, *_ = session.Session.parents(as_objects=True)
     assert subject_tbl.full_table_name == subject.Subject.full_table_name
