@@ -1,63 +1,99 @@
-import pathlib
 import csv
-import re
-
 from workflow_session.pipeline import lab, subject, session
 
-from workflow_session.paths import get_root_data_dir
-import element_data_loader.utils
+
+def ingest_general(csvs, tables,
+                   skip_duplicates=True):
+    """
+    Inserts data from a series of csvs into their corresponding table:
+        e.g., ingest_general(['./lab_data.csv', './proj_data.csv'],
+                                 [lab.Lab(),lab.Project()]
+    ingest_general(csvs, tables, skip_duplicates=True)
+        :param csvs: list of relative paths to CSV files
+        :param tables: list of datajoint tables with ()
+    """
+    for insert, table in zip(csvs, tables):
+        with open(insert, newline='') as f:
+            data = list(csv.DictReader(f, delimiter=','))
+        prev_len = len(table)
+        table.insert(data, skip_duplicates=skip_duplicates,
+                     # Ignore Extra because some CSVs feed/mult tables
+                     ignore_extra_fields=True)
+        insert_len = len(table) - prev_len     # report length change
+        print(f'\n---- Inserting {insert_len} entry(s) \
+                into {table.table_name} ----')
+
+    # Future enhancement: permit embedded lists
+    # Currently requires a csv to be listed multiple times
+    # if feeding multiple tables. Could instead take lists of lists.
+
 
 def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
-                project_csv_path='./user_data/lab/projects.csv',
-                pubs_csv_path='./user_data/lab/publications.csv',
-                keyw_csv_path='./user_data/lab/keywords.csv',
-                protocol_csv_path='./user_data/lab/protocols.csv'
-                ):
-    # -------------- Insert new "Lab" --------------
-    with open(lab_csv_path, newline= '') as f:
-        input_labs = list(csv.DictReader(f, delimiter=','))
-    print(f'\n---- Insert {len(input_labs)} entry(s) into lab tables ----')
-    lab.Lab.insert(input_labs, skip_duplicates=True, ignore_extra_fields=True)
-    lab.Location.insert(input_labs, skip_duplicates=True, ignore_extra_fields=True)
-    # -------------- Insert new "Project" --------------
-    with open(project_csv_path, newline= '') as f:
-        input_projs = list(csv.DictReader(f, delimiter=','))
-    print(f'\n---- Insert {len(input_projs)} entry(s) into project table ----')
-    lab.Project.insert(input_projs, skip_duplicates=True, ignore_extra_fields=True)
-    # -------------- Insert publications + keywords --------------
-    with open(pubs_csv_path, newline= '') as f:
-        input_pubs = list(csv.DictReader(f, delimiter=','))
-    with open(keyw_csv_path, newline= '') as f:
-        input_keyw = list(csv.DictReader(f, delimiter=','))
-    print(f'\n---- Insert entry(s) into publication/keyword tables ----')
-    lab.Project.Publication.insert(input_pubs, skip_duplicates=True, ignore_extra_fields=True)
-    lab.Project.Keywords.insert(input_keyw, skip_duplicates=True, ignore_extra_fields=True)
+               project_csv_path='./user_data/lab/projects.csv',
+               publication_csv_path='./user_data/lab/publications.csv',
+               keyword_csv_path='./user_data/lab/keywords.csv',
+               protocol_csv_path='./user_data/lab/protocols.csv',
+               users_csv_path='./user_data/lab/users.csv',
+               project_user_csv_path='./user_data/lab/project_users.csv',
+               skip_duplicates=True):
+    """
+    Inserts data from a CSVs into their corresponding lab schema tables.
+    By default, uses data from workflow_session/user_data/lab/
+    :param lab_csv_path:      relative path of lab csv
+    :param project_csv_path:  relative path of project csv
+    :param pubs_csv_path:     relative path of publication csv
+    :param keyw_csv_path:     relative path of keyword csv
+    :param protocol_csv_path: relative path of protocol csv
+    :param users_csv_path:    relative path of users csv
+    :param skip_duplicates=True: datajoint insert function param
+    """
 
-    # -------------- Insert new "Protocol" --------------
-    with open(protocol_csv_path, newline= '') as f:
-        input_prots = list(csv.DictReader(f, delimiter=','))
-    print(f'\n---- Insert {len(input_prots)} entry(s) into protocol tables ----')
-    lab.Protocol.insert(input_prots, skip_duplicates=True, ignore_extra_fields=True)
-    lab.ProtocolType.insert(input_prots, skip_duplicates=True, ignore_extra_fields=True)
+    # List with repeats for when mult dj.tables fed by same CSV
+    csvs = [lab_csv_path, lab_csv_path,
+            project_csv_path, publication_csv_path, keyword_csv_path,
+            protocol_csv_path, protocol_csv_path,
+            users_csv_path, users_csv_path, users_csv_path,
+            project_user_csv_path]
+    tables = [lab.Lab(), lab.Location(),
+              lab.Project(), lab.Project.Publication(), lab.Project.Keywords(),
+              lab.ProtocolType(), lab.Protocol(),
+              lab.UserRole(), lab.User(), lab.LabMembership(),
+              lab.ProjectUser()]
 
-def ingest_subjects(subject_csv_path='./user_data/animal/subjects.csv'):
-    # -------------- Insert new "Subject" --------------
-    with open(subject_csv_path, newline= '') as f:
-        input_subjects = list(csv.DictReader(f, delimiter=','))
-    print(f'\n---- Insert {len(input_subjects)} entry(s) into subject tables ----')
-    subject.Subject.insert(input_subjects, skip_duplicates=True, ignore_extra_fields=True)
-    subject.SubjectDeath.insert(input_subjects, skip_duplicates=True, ignore_extra_fields=True)
-    subject.SubjectCullMethod.insert(input_subjects, skip_duplicates=True, ignore_extra_fields=True)
-    ## Skipped allele info
+    ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
 
-def ingest_sessions(session_csv_path='./user_data/session/sessions.csv'):
-    with open(session_csv_path, newline= '') as f:
-        input_sessions = list(csv.DictReader(f, delimiter=','))
 
-    print(f'\n---- Insert {len(input_sessions)} entry(s) into session.Session ----')
-    session.Session.insert(input_sessions, skip_duplicates=True, ignore_extra_fields=True)
-    session.SessionDirectory.insert(input_sessions, skip_duplicates=True, ignore_extra_fields=True)
-    session.SessionNote.insert(input_sessions, skip_duplicates=True, ignore_extra_fields=True)
+def ingest_subjects(subject_csv_path='./user_data/subject/subjects.csv',
+                    skip_duplicates=True):
+    """
+    Inserts data from a subject csv into corresponding subject schema tables
+    By default, uses data from workflow_session/user_data/subject/
+    :param subject_csv_path:     relative path of subject csv
+    :param skip_duplicates=True: datajoint insert function param
+    """
+    csvs = [subject_csv_path, subject_csv_path, subject_csv_path]
+    tables = [subject.Subject(), subject.SubjectDeath(),
+              subject.SubjectCullMethod()]
+
+    ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
+
+    # TODO: add allele and genotyping data
+
+
+def ingest_sessions(session_csv_path='./user_data/session/sessions.csv',
+                    skip_duplicates=True):
+    """
+    Inserts data from a sessions csv into corresponding session schema tables
+    By default, uses data from workflow_session/user_data/session/
+    :param session_csv_path:     relative path of subject csv
+    :param skip_duplicates=True: datajoint insert function param
+    """
+    csvs = [session_csv_path, session_csv_path, session_csv_path]
+    tables = [session.Session(), session.SessionDirectory(),
+              session.SessionNote()]
+
+    ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
+
 
 if __name__ == '__main__':
     ingest_lab()
