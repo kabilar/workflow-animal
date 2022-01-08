@@ -1,130 +1,0 @@
-<svg height="114pt" viewBox="0.00 0.00 470.00 114.00" width="470pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 110)">
-<polygon fill="white" points="-4,4 -4,-110 466,-110 466,4 -4,4" stroke="transparent"/>
-<!-- Lab -->
-<g class="node" id="node1">
-<title>Lab</title>
-<g id="a_node1"><a xlink:title="lab                  ------------------------------lab_name             institution          address              time_zone            ">
-<polygon fill="#000000" fill-opacity="0.125490" points="55,-106 20,-106 20,-71 55,-71 55,-106" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="start" text-decoration="underline" x="29.5" y="-87">Lab</text>
-</a>
-</g>
-</g>
-<!-- lab.LabMembership -->
-<g class="node" id="node7">
-<title>lab.LabMembership</title>
-<g id="a_node7"><a xlink:title="→ Lab→ User------------------------------→ [nullable] lab.UserRole">
-<polygon fill="#000000" fill-opacity="0.125490" points="172,-35 71,-35 71,0 172,0 172,-35" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="middle" x="121.5" y="-15">lab.LabMembership</text>
-</a>
-</g>
-</g>
-<!-- Lab&#45;&gt;lab.LabMembership -->
-<g class="edge" id="edge1">
-<title>Lab-&gt;lab.LabMembership</title>
-<path d="M55.31,-72.87C68.8,-61.79 87.33,-46.57 101.35,-35.05" fill="none" stroke="#000000" stroke-opacity="0.250980" stroke-width="0.75"/>
-</g>
-<!-- Location -->
-<g class="node" id="node8">
-<title>Location</title>
-<g id="a_node8"><a xlink:title="→ Lablocation             ------------------------------location_description=&quot;&quot; ">
-<polygon fill="#000000" fill-opacity="0.125490" points="53,-35 0,-35 0,0 53,0 53,-35" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="start" text-decoration="underline" x="8" y="-16">Location</text>
-</a>
-</g>
-</g>
-<!-- Lab&#45;&gt;Location -->
-<g class="edge" id="edge2">
-<title>Lab-&gt;Location</title>
-<path d="M34.84,-70.8C33.11,-59.95 30.86,-45.87 29.14,-35.05" fill="none" stroke="#000000" stroke-opacity="0.250980" stroke-width="0.75"/>
-</g>
-<!-- lab.Project -->
-<g class="node" id="node2">
-<title>lab.Project</title>
-<g id="a_node2"><a xlink:title="project              ------------------------------project_description=&quot;&quot; ">
-<polygon fill="#000000" fill-opacity="0.125490" points="290,-106 227,-106 227,-71 290,-71 290,-106" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="start" text-decoration="underline" x="235" y="-87">lab.Project</text>
-</a>
-</g>
-</g>
-<!-- lab.ProjectUser -->
-<g class="node" id="node5">
-<title>lab.ProjectUser</title>
-<g id="a_node5"><a xlink:title="→ lab.Project→ User">
-<polygon fill="#00ff00" fill-opacity="0.188235" points="299,-35 200,-35 200,0 299,0 299,-35" stroke="#00ff00" stroke-opacity="0.188235"/>
-<text fill="darkgreen" font-family="arial" font-size="12.00" text-anchor="middle" x="249.5" y="-14.4">lab.ProjectUser</text>
-</a>
-</g>
-</g>
-<!-- lab.Project&#45;&gt;lab.ProjectUser -->
-<g class="edge" id="edge3">
-<title>lab.Project-&gt;lab.ProjectUser</title>
-<path d="M256.32,-70.8C254.91,-59.95 253.07,-45.87 251.66,-35.05" fill="none" stroke="#000000" stroke-opacity="0.250980" stroke-width="0.75"/>
-</g>
-<!-- lab.UserRole -->
-<g class="node" id="node3">
-<title>lab.UserRole</title>
-<g id="a_node3"><a xlink:title="user_role            ">
-<polygon fill="#000000" fill-opacity="0.125490" points="152.5,-106 78.5,-106 78.5,-71 152.5,-71 152.5,-106" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="start" text-decoration="underline" x="86.5" y="-87">lab.UserRole</text>
-</a>
-</g>
-</g>
-<!-- lab.UserRole&#45;&gt;lab.LabMembership -->
-<g class="edge" id="edge4">
-<title>lab.UserRole-&gt;lab.LabMembership</title>
-<path d="M116.95,-70.8C117.9,-59.95 119.12,-45.87 120.06,-35.05" fill="none" stroke="#000000" stroke-dasharray="5,2" stroke-opacity="0.250980" stroke-width="0.75"/>
-</g>
-<!-- lab.ProtocolType -->
-<g class="node" id="node4">
-<title>lab.ProtocolType</title>
-<g id="a_node4"><a xlink:title="protocol_type        ">
-<polygon fill="#000000" fill-opacity="0.125490" points="397,-106 308,-106 308,-71 397,-71 397,-106" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="start" text-decoration="underline" x="316" y="-87">lab.ProtocolType</text>
-</a>
-</g>
-</g>
-<!-- Protocol -->
-<g class="node" id="node10">
-<title>Protocol</title>
-<g id="a_node10"><a xlink:title="protocol             ------------------------------→ lab.ProtocolTypeprotocol_description=&quot;&quot; ">
-<polygon fill="#000000" fill-opacity="0.125490" points="379,-35 326,-35 326,0 379,0 379,-35" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="start" text-decoration="underline" x="334" y="-16">Protocol</text>
-</a>
-</g>
-</g>
-<!-- lab.ProtocolType&#45;&gt;Protocol -->
-<g class="edge" id="edge5">
-<title>lab.ProtocolType-&gt;Protocol</title>
-<path d="M352.5,-70.8C352.5,-59.95 352.5,-45.87 352.5,-35.05" fill="none" stroke="#000000" stroke-dasharray="5,2" stroke-opacity="0.250980" stroke-width="0.75"/>
-</g>
-<!-- Source -->
-<g class="node" id="node6">
-<title>Source</title>
-<g id="a_node6"><a xlink:title="source               ------------------------------source_name          contact_details=&quot;&quot;   source_description=&quot;&quot; ">
-<polygon fill="#000000" fill-opacity="0.125490" points="462,-106 415,-106 415,-71 462,-71 462,-106" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="start" text-decoration="underline" x="423" y="-87">Source</text>
-</a>
-</g>
-</g>
-<!-- User -->
-<g class="node" id="node9">
-<title>User</title>
-<g id="a_node9"><a xlink:title="user                 ------------------------------user_email=&quot;&quot;        user_cellphone=&quot;&quot;    ">
-<polygon fill="#000000" fill-opacity="0.125490" points="208.5,-106 170.5,-106 170.5,-71 208.5,-71 208.5,-106" stroke="transparent"/>
-<text font-family="arial" font-size="10.00" text-anchor="start" text-decoration="underline" x="178.5" y="-87">User</text>
-</a>
-</g>
-</g>
-<!-- User&#45;&gt;lab.ProjectUser -->
-<g class="edge" id="edge6">
-<title>User-&gt;lab.ProjectUser</title>
-<path d="M204.02,-70.8C213.46,-59.95 225.7,-45.87 235.11,-35.05" fill="none" stroke="#000000" stroke-opacity="0.250980" stroke-width="0.75"/>
-</g>
-<!-- User&#45;&gt;lab.LabMembership -->
-<g class="edge" id="edge7">
-<title>User-&gt;lab.LabMembership</title>
-<path d="M173.04,-70.8C162.35,-59.95 148.47,-45.87 137.81,-35.05" fill="none" stroke="#000000" stroke-opacity="0.250980" stroke-width="0.75"/>
-</g>
-</g>
-</svg>

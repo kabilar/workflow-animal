@@ -20,8 +20,8 @@ def ingest_general(csvs, tables,
                      # Ignore Extra because some CSVs feed/mult tables
                      ignore_extra_fields=True)
         insert_len = len(table) - prev_len     # report length change
-        print(f'\n---- Inserting {insert_len} entry(s) \
-                into {table.table_name} ----')
+        print(f'\n---- Inserting {insert_len} entry(s) '
+              + f'into {table.table_name} ----')
 
     # Future enhancement: permit embedded lists
     # Currently requires a csv to be listed multiple times

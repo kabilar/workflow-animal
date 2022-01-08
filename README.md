@@ -22,14 +22,14 @@ element-lab is used for all lab-general metadata, including personnel and projec
 element-animal contains two modules, `subject` and `genotyping`.
 
 `subject` contains basic information of subjects.
-![subject](images/subject_diagram2.svg)
+![subject](images/subject_diagram.svg)
 
 `genotyping` is designed for labs that handle animal care and genetic information themselves, which is optional.
-![genotyping](images/genotyping_diagram2.svg)
+![genotyping](images/genotyping_diagram.svg)
 
 ### element-session
 `session` is designed to handle metadata related to data collection, including collection date-time, file paths, and notes. Most workflows will include element-session as a starting point for further data entry.
-![session](images/session_diagram2.png)
+![session](images/session_diagram.png)
 
 ### This workflow
 This workflow serves as an example of the upstream part of a typical data workflow, for examples using these elements in tandem with other data collection modalities, refer to:
