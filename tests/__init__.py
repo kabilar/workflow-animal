@@ -88,24 +88,16 @@ def lab_csv():
 @pytest.fixture
 def lab_project_csv():
     """ Create a 'projects.csv' file"""
-    lab_project_content = ["project,project_description,repositoryurl,"
-                           + "repositoryname,pharmacology,viruses,slices,"
-                           + "stimulus,surgery,codeurl",
+    lab_project_content = ["project,project_description,repository_url,"
+                           + "repository_name,codeurl",
                            "ProjA,Example project to populate element-lab,"
                            + "https://github.com/datajoint/element-lab/,"
-                           + "element-lab,Subjects were administered 10ul "
-                           + "sedative prior to surgery,Exemplarvirus "
-                           + "administered 10d before experimental session,,"
-                           + "videos generated programmatically see "
-                           + "repository,Craniotomy performed by session "
-                           + "experimenter,https://github.com/datajoint/"
-                           + "element-lab/tree/main/element_lab",
+                           + "element-lab,https://github.com/datajoint/element"
+                           + "-lab/tree/main/element_lab",
                            "ProjB,Other example project to populate element-"
-                           + "lab,https://github.com/datajoint/element-"
-                           + "session/,element-session,,Exemplarvirus "
-                           + "administered 8d study,,,,https://github.com/"
-                           + "datajoint/element-session/tree/main/element_"
-                           + "session"]
+                           + "lab,https://github.com/datajoint/element-session"
+                           + "/,element-session,https://github.com/datajoint/"
+                           + "element-session/tree/main/element_session"]
     lab_project_csv_path = pathlib.Path('./tests/user_data/lab/projects.csv')
     write_csv(lab_project_content, lab_project_csv_path)
 
