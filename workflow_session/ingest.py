@@ -50,12 +50,14 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
 
     # List with repeats for when mult dj.tables fed by same CSV
     csvs = [lab_csv_path, lab_csv_path,
-            project_csv_path, publication_csv_path, keyword_csv_path,
+            project_csv_path, project_csv_path,
+            publication_csv_path, keyword_csv_path,
             protocol_csv_path, protocol_csv_path,
             users_csv_path, users_csv_path, users_csv_path,
             project_user_csv_path]
     tables = [lab.Lab(), lab.Location(),
-              lab.Project(), lab.Project.Publication(), lab.Project.Keywords(),
+              lab.Project(), lab.Project.SourceCode(),
+              lab.Project.Publication(), lab.Project.Keywords(),
               lab.ProtocolType(), lab.Protocol(),
               lab.UserRole(), lab.User(), lab.LabMembership(),
               lab.ProjectUser()]
