@@ -1,4 +1,4 @@
 datajoint>=0.13.0
 element-lab
-element-animal
+element-subject
 ipykernel
