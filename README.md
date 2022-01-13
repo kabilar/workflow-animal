@@ -8,7 +8,7 @@ This repository provides demonstrations for:
 Set up a workflow using different elements (see [workflow_animal/pipeline.py](workflow_animal/pipeline.py))
 
 ## Workflow architecture
-The lab and animal management workflow presented here uses components from two DataJoint elements, element-lab, and element-subject assembled together to a functional workflow.
+The Lab and Animal Management Workflow presented here uses two DataJoint Elements: element-lab and element-subject assembled into a functional workflow.
 
 ### element-lab
 
