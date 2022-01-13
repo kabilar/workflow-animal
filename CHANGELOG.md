@@ -3,10 +3,13 @@
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
 
-## [unreleased: 0.0.1]
+## [0.0.0b2]
 ### Added
-+ Change to include `element-session`
-+ Add export notebook
++ Export notebook
++ Integration tests
+
+### Changed
++ Name `element-animal` -> `element-session`
 
 
 ## [0.0.0b1] - 2021-03-24
