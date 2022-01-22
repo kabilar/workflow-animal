@@ -1,11 +1,6 @@
 '''
-fresh docker:
-    docker run --name wf-sess -p 3306:3306 -e \
-    MYSQL_ROOT_PASSWORD=tutorial datajoint/mysql
-dependencies: pip install pytest pytest-cov
 run all tests:
-    pytest -sv --cov-report term-missing --cov=workflow-session \
-    -p no:warnings tests/
+    pytest -sv --cov-report term-missing --cov=workflow-session -p no:warnings tests/
 run one test, debug:
     pytest [above options] --pdb tests/tests_name.py -k function_name
 '''
@@ -19,8 +14,10 @@ import datajoint as dj
 
 _tear_down = True
 
-test_user_data_dir = pathlib.Path('./tests/user_data')
-test_user_data_dir.mkdir(exist_ok=True)
+pathlib.Path('./tests/user_data').mkdir(exist_ok=True)
+pathlib.Path('./tests/user_data/lab').mkdir(exist_ok=True)
+pathlib.Path('./tests/user_data/session').mkdir(exist_ok=True)
+pathlib.Path('./tests/user_data/subject').mkdir(exist_ok=True)
 
 # ------------------ GENERAL FUCNTION ------------------
 

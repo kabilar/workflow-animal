@@ -1,5 +1,5 @@
-# docker-compose -f docker-compose-test.yaml up --build
-# docker-compose -f docker-compose-test.yaml down
+# docker-compose -f docker-compose-dev.yaml up -d --build
+# docker-compose -f docker-compose-dev.yaml down
 
 version: "2.4"
 x-net: &net
@@ -15,21 +15,9 @@ services:
     <<: *net
     build:
       context: ../
-      dockerfile: ./workflow-session/Dockerfile.test
+      dockerfile: ./workflow-session/Dockerfile.dev
     env_file: .env
-    image: workflow_session:0.0.0b2
-    environment:
-      - DJ_HOST=db
-      - DJ_USER=root
-      - DJ_PASS=simple
-      - DATABASE_PREFIX=test_
-    command:
-      - bash
-      - -c
-      - |
-        echo "------ INTEGRATION TESTS ------"
-        pytest -sv --cov-report term-missing --cov=workflow-session -p no:warnings
-        tail -f /dev/null
+    image: workflow_session_dev:0.0.0b2
     volumes:
       - ./apt_requirements.txt:/tmp/apt_requirements.txt
       - ../element-lab:/main/element-lab
