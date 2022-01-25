@@ -13,19 +13,16 @@ The lab and experiment subject management workflow presented here uses component
 
 ### element-lab
 
-element-lab is used for all lab-general metadata, including personnel and projects. Many fields are optional, but may help for keeping track of lab members for multi-site projects or exporting data for publication.
-
-![lab](images/lab_diagram.svg)
+![element-lab](
+https://github.com/datajoint/element-lab/raw/main/images/element_lab_diagram.svg)
 
 ### element-animal
 
-element-animal contains two modules, `subject` and `genotyping`.
-
-`subject` contains basic information of subjects.
-![subject](images/subject_diagram.svg)
+![element-animal](
+https://github.com/datajoint/element-animal/blob/main/images/subject_diagram.svg)
 
 `genotyping` is designed for labs that handle animal care and genetic information themselves, which is optional.
-![genotyping](images/genotyping_diagram.svg)
+![genotyping](https://github.com/datajoint/element-animal/blob/nwb/images/genotyping_diagram.svg)
 
 ### element-session
 `session` is designed to handle metadata related to data collection, including collection date-time, file paths, and notes. Most workflows will include element-session as a starting point for further data entry.
