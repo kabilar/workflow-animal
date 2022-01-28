@@ -9,9 +9,9 @@ long_description = """"
 # Workflow for lab, animal, and session management
 
 Build a workflow for lab management and animal metadata using DataJoint Elements
-+ [elements-lab](https://github.com/datajoint/element-lab)
-+ [elements-animal](https://github.com/datajoint/element-animal)
-+ [elements-session](https://github.com/datajoint/element-session)
++ [element-lab](https://github.com/datajoint/element-lab)
++ [element-animal](https://github.com/datajoint/element-animal)
++ [element-session](https://github.com/datajoint/element-session)
 """
 
 with open(path.join(here, 'requirements.txt')) as f:
@@ -23,7 +23,7 @@ setup(
     description="DataJoint Elements for Lab, Animal and Session Management",
     long_description=long_description,
     author='DataJoint',
-    author_email='info@vathes.com',
+    author_email='info@datajoint.com',
     license='MIT',
     url='https://github.com/datajoint/workflow-session',
     keywords='neuroscience lab-management animal-management session-management datajoint',
