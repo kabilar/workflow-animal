@@ -22,11 +22,11 @@ https://github.com/datajoint/element-lab/raw/main/images/element_lab_diagram.svg
 https://github.com/datajoint/element-animal/blob/main/images/subject_diagram.svg)
 
 `genotyping` is designed for labs that handle animal care and genetic information themselves, which is optional.
-![genotyping](https://github.com/datajoint/element-animal/blob/nwb/images/genotyping_diagram.svg)
+![genotyping](https://github.com/datajoint/element-animal/blob/main/images/genotyping_diagram.svg)
 
 ### element-session
 `session` is designed to handle metadata related to data collection, including collection date-time, file paths, and notes. Most workflows will include element-session as a starting point for further data entry.
-![session](images/session_diagram.png)
+![session](https://github.com/datajoint/element-session/blob/main/images/session_diagram.svg)
 
 ### This workflow
 This workflow serves as an example of the upstream part of a typical data workflow, for examples using these elements in tandem with other data collection modalities, refer to:

@@ -7,51 +7,42 @@ __pycache__/
 .Python
 env/
 build/
-develop-eggs/
-dist/
+*egg*/
+*dist/
 downloads/
-eggs/
-.eggs/
-lib/
-lib64/
+lib*/
 parts/
-sdist/
 var/
 wheels/
-*.egg-info/
 .installed.cfg
 *.egg
 *.manifest
 *.spec
-pip-log.txt
-pip-delete*.txt
+pip-*.txt
 
 # Unit test / coverage reports
 htmlcov/
 .tox/
-.coverage
-.coverage.*
+*.cov*
 .cache
 nosetests.xml
 coverage.xml
-*.cover
 .hypothesis/
 .pytest_cache/
 docker-compose.y*ml
 
 # C extension, Translations
+# editors: vscode, emacs, Mac
 *.so
 *.mo
 *.pot
-
-# editors: vscode, emacs, Mac
 .vscode
 **/*~
 **/#*#
 **/.#*
 .DS_Store
 
-# Django, Flask, Scrapy, Sphinx, mkdocs:
+# Django, Flask, Scrapy, Sphinx, mkdocs
 # PyBuilder, Jupyter, SageMath, celery beat
 *.log
 local_settings.py
@@ -62,21 +53,19 @@ scratchpaper.*
 docs/_build/
 /site
 target/
-.ipynb_checkpoints
+.*checkpoints
 celerybeat-schedule
 *.sage.py
 
 # dotenv, virtualenv, pyenv, mypy
-.env
-.venv
+.*env
 venv/
 ENV/
 .python-version
 .mypy_cache/
 
 # Spyder/Rope project settings
-.spyderproject
-.spyproject
+.spy*project
 .ropeproject
 
 # datajoint, notes, nwb export

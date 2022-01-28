@@ -56,8 +56,8 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
             users_csv_path, users_csv_path, users_csv_path,
             project_user_csv_path]
     tables = [lab.Lab(), lab.Location(),
-              lab.Project(), lab.Project.SourceCode(),
-              lab.Project.Publication(), lab.Project.Keywords(),
+              lab.Project(), lab.ProjectSourceCode(),
+              lab.ProjectPublication(), lab.ProjectKeywords(),
               lab.ProtocolType(), lab.Protocol(),
               lab.UserRole(), lab.User(), lab.LabMembership(),
               lab.ProjectUser()]
