@@ -3,21 +3,20 @@
 Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) convention.
 
 
-## [0.0.0b2]
+## 0.0.0b2
 ### Added
-+ Export notebook
 + Integration tests
 
 ### Changed
 + Name `workflow-animal` -> `workflow-session`
 
 
-## [0.0.0b1] - 2021-03-24
+## 0.0.0b1 - 2021-03-24
 ### Added
 + First beta release
 
 
-## [0.0.0a1] - 2021-03-18
+## 0.0.0a1 - 2021-03-18
 ### Added
 + Added notebooks
 

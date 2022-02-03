@@ -66,6 +66,7 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
 
 
 def ingest_subjects(subject_csv_path='./user_data/subject/subjects.csv',
+                    subject_part_csv_path='./user_data/subject/subjects_part.csv',
                     skip_duplicates=True):
     """
     Inserts data from a subject csv into corresponding subject schema tables
@@ -73,9 +74,10 @@ def ingest_subjects(subject_csv_path='./user_data/subject/subjects.csv',
     :param subject_csv_path:     relative path of subject csv
     :param skip_duplicates=True: datajoint insert function param
     """
-    csvs = [subject_csv_path, subject_csv_path, subject_csv_path]
-    tables = [subject.Subject(), subject.SubjectDeath(),
-              subject.SubjectCullMethod()]
+    csvs = [subject_csv_path, subject_csv_path, subject_csv_path,
+            subject_part_csv_path, subject_part_csv_path]
+    tables = [subject.Subject(), subject.SubjectDeath(), subject.SubjectCullMethod(),
+              subject.Subject.Protocol(), subject.Subject.User()]
 
     ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
 
@@ -90,9 +92,9 @@ def ingest_sessions(session_csv_path='./user_data/session/sessions.csv',
     :param session_csv_path:     relative path of subject csv
     :param skip_duplicates=True: datajoint insert function param
     """
-    csvs = [session_csv_path, session_csv_path, session_csv_path]
+    csvs = [session_csv_path, session_csv_path, session_csv_path, session_csv_path]
     tables = [session.Session(), session.SessionDirectory(),
-              session.SessionNote()]
+              session.SessionNote(), session.ProjectSession()]
 
     ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
 

@@ -19,7 +19,7 @@ with open(path.join(here, 'requirements.txt')) as f:
 
 setup(
     name='workflow-session',
-    version='0.0.1',
+    version=__version__,
     description="DataJoint Elements for Lab, Animal and Session Management",
     long_description=long_description,
     author='DataJoint',

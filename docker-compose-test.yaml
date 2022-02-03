@@ -1,4 +1,5 @@
 # docker-compose -f docker-compose-test.yaml up --build
+# docker exec -it workflow-session_workflow_1 /bin/bash
 # docker-compose -f docker-compose-test.yaml down
 
 version: "2.4"
@@ -19,7 +20,7 @@ services:
     env_file: .env
     image: workflow_session:0.0.0b2
     environment:
-      - DJ_HOST=db
+      - DJ_HOST=workflow-session_db_1
       - DJ_USER=root
       - DJ_PASS=simple
       - DATABASE_PREFIX=test_

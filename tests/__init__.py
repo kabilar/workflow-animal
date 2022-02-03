@@ -41,6 +41,12 @@ def dj_config():
     if pathlib.Path('./dj_local_conf.json').exists():
         dj.config.load('./dj_local_conf.json')
     dj.config['safemode'] = False
+    dj.config['database.host'] = (os.environ.get('DJ_HOST')
+                                  or dj.config['database.host'])
+    dj.config['database.password'] = (os.environ.get('DJ_PASS')
+                                      or dj.config['database.password'])
+    dj.config['database.user'] = (os.environ.get('DJ_USER')
+                                  or dj.config['database.user'])
     dj.config['custom'] = {
         'database.prefix': (os.environ.get('DATABASE_PREFIX')
                             or dj.config['custom']['database.prefix'])}
@@ -109,7 +115,8 @@ def lab_project_users_csv():
                                 "Sherlock,ProjA",
                                 "Sherlock,ProjB",
                                 "Watson,ProjB",
-                                "Dr. Candace Pert,ProjA"]
+                                "Dr. Candace Pert,ProjA",
+                                "User1,ProjA"]
     lab_project_user_csv_path = pathlib.Path('./tests/user_data/lab/\
                                               project_users.csv')
     write_csv(lab_project_user_content, lab_project_user_csv_path)
@@ -169,7 +176,8 @@ def lab_user_csv():
                         + "+44 20 7946 0344",
                         "LabA,Watson,Dr,DrWatson@BakerSt.com,+44 73 8389 1763",
                         "LabB,Dr. Candace Pert,PI,Pert@gmail.com,"
-                        + "+44 74 4046 5899"]
+                        + "+44 74 4046 5899",
+                        "LabA,User1,Lab Tech,fake@email.com,+44 1632 960103"]
     lab_user_csv_path = pathlib.Path('./tests/user_data/lab/users.csv')
     write_csv(lab_user_content, lab_user_csv_path)
 
@@ -218,11 +226,26 @@ def subjects_csv():
 
 
 @pytest.fixture
-def ingest_subjects(pipeline, subjects_csv):
+def subjects_part_csv():
+    """Create a 'subjects_part.csv for Subject part tables"""
+    subject_part_content = ["subject,protocol,user,line,strain,source,lab",
+                            "subject6,ProtA,User1,line,strain,source,LabA",
+                            "subject5,ProtA,User1,line,strain,source,LabA"]
+    subject_part_csv_path = pathlib.Path('./tests/user_data/subject/subjects_part.csv')
+    write_csv(subject_part_content, subject_part_csv_path)
+
+    yield subject_part_content, subject_part_csv_path
+    subject_part_csv_path.unlink()
+
+
+@pytest.fixture
+def ingest_subjects(pipeline, subjects_csv, subjects_part_csv):
     """From workflow_session ingest.py, import ingest_subjects, run"""
     from workflow_session.ingest import ingest_subjects
     _, subject_csv_path = subjects_csv
-    ingest_subjects(subject_csv_path=subject_csv_path)
+    _, subject_part_csv_path = subjects_part_csv
+    ingest_subjects(subject_csv_path=subject_csv_path,
+                    subject_part_csv_path=subject_part_csv_path)
     return
 
 
@@ -231,10 +254,12 @@ def ingest_subjects(pipeline, subjects_csv):
 def sessions_csv():
     """ Create a 'sessions.csv' file"""
     session_csv_path = pathlib.Path('./tests/user_data/session/sessions.csv')
-    session_content = ["subject,session_datetime,session_dir,session_note",
-                       "subject5,2020-04-15 11:16:38,/subject5/session1,"
+    session_content = ["subject,project,session_datetime,session_dir,session_note",
+                       "subject5,ProjA,2020-04-15 11:16:38,/subject5/session1,"
                        + "'Successful data collection, no notes'",
-                       "subject6,2021-06-02 14:04:22,/subject6/session1,"
+                       "subject5,ProjA,2020-05-12 04:13:07,subject5\\session1,"
+                       + "'Data collection notes'",
+                       "subject6,ProjA,2021-06-02 14:04:22,/subject6/session1,"
                        + "'Ambient temp abnormally low'"]
     write_csv(session_content, session_csv_path)
 
