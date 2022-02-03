@@ -3,7 +3,7 @@ from workflow_session.pipeline import lab, subject, session
 
 
 def ingest_general(csvs, tables,
-                   skip_duplicates=True):
+                   skip_duplicates=True, verbose=True):
     """
     Inserts data from a series of csvs into their corresponding table:
         e.g., ingest_general(['./lab_data.csv', './proj_data.csv'],
@@ -11,17 +11,20 @@ def ingest_general(csvs, tables,
     ingest_general(csvs, tables, skip_duplicates=True)
         :param csvs: list of relative paths to CSV files
         :param tables: list of datajoint tables with ()
+        :param verbose: print number inserted (i.e., table length change)
     """
     for insert, table in zip(csvs, tables):
         with open(insert, newline='') as f:
             data = list(csv.DictReader(f, delimiter=','))
-        prev_len = len(table)
+        if verbose:
+            prev_len = len(table)
         table.insert(data, skip_duplicates=skip_duplicates,
                      # Ignore Extra because some CSVs feed/mult tables
                      ignore_extra_fields=True)
-        insert_len = len(table) - prev_len     # report length change
-        print(f'\n---- Inserting {insert_len} entry(s) '
-              + f'into {table.table_name} ----')
+        if verbose:
+            insert_len = len(table) - prev_len     # report length change
+            print(f'\n---- Inserting {insert_len} entry(s) '
+                  + f'into {table.table_name} ----')
 
     # Future enhancement: permit embedded lists
     # Currently requires a csv to be listed multiple times
@@ -35,7 +38,7 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
                protocol_csv_path='./user_data/lab/protocols.csv',
                users_csv_path='./user_data/lab/users.csv',
                project_user_csv_path='./user_data/lab/project_users.csv',
-               skip_duplicates=True):
+               skip_duplicates=True, verbose=True):
     """
     Inserts data from a CSVs into their corresponding lab schema tables.
     By default, uses data from workflow_session/user_data/lab/
@@ -46,6 +49,7 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
     :param protocol_csv_path: relative path of protocol csv
     :param users_csv_path:    relative path of users csv
     :param skip_duplicates=True: datajoint insert function param
+    :param verbose: print number inserted (i.e., table length change)
     """
 
     # List with repeats for when mult dj.tables fed by same CSV
@@ -62,41 +66,44 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
               lab.UserRole(), lab.User(), lab.LabMembership(),
               lab.ProjectUser()]
 
-    ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
+    ingest_general(csvs, tables, skip_duplicates=skip_duplicates, verbose=verbose)
 
 
 def ingest_subjects(subject_csv_path='./user_data/subject/subjects.csv',
                     subject_part_csv_path='./user_data/subject/subjects_part.csv',
-                    skip_duplicates=True):
+                    skip_duplicates=True, verbose=True):
     """
     Inserts data from a subject csv into corresponding subject schema tables
     By default, uses data from workflow_session/user_data/subject/
-    :param subject_csv_path:     relative path of subject csv
+    :param subject_csv_path:      relative path of csv for subject data
+    :param subject_part_csv_path: relative path of csv for subject part tables
     :param skip_duplicates=True: datajoint insert function param
+    :param verbose: print number inserted (i.e., table length change)
     """
     csvs = [subject_csv_path, subject_csv_path, subject_csv_path,
-            subject_part_csv_path, subject_part_csv_path]
+            subject_part_csv_path, subject_part_csv_path, subject_part_csv_path]
     tables = [subject.Subject(), subject.SubjectDeath(), subject.SubjectCullMethod(),
-              subject.Subject.Protocol(), subject.Subject.User()]
+              subject.Subject.Protocol(), subject.Subject.User(), subject.Subject.Lab()]
 
-    ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
+    ingest_general(csvs, tables, skip_duplicates=skip_duplicates, verbose=verbose)
 
     # TODO: add allele and genotyping data
 
 
 def ingest_sessions(session_csv_path='./user_data/session/sessions.csv',
-                    skip_duplicates=True):
+                    skip_duplicates=True, verbose=True):
     """
     Inserts data from a sessions csv into corresponding session schema tables
     By default, uses data from workflow_session/user_data/session/
     :param session_csv_path:     relative path of subject csv
     :param skip_duplicates=True: datajoint insert function param
+    :param verbose: print number inserted (i.e., table length change)
     """
     csvs = [session_csv_path, session_csv_path, session_csv_path, session_csv_path]
     tables = [session.Session(), session.SessionDirectory(),
               session.SessionNote(), session.ProjectSession()]
 
-    ingest_general(csvs, tables, skip_duplicates=skip_duplicates)
+    ingest_general(csvs, tables, skip_duplicates=skip_duplicates, verbose=verbose)
 
 
 if __name__ == '__main__':

@@ -1,11 +1,12 @@
 '''
 run all tests:
-    pytest -sv --cov-report term-missing --cov=workflow-session -p no:warnings tests/
+    pytest -sv --cov-report term-missing --cov=workflow_session -p no:warnings tests/
 run one test, debug:
     pytest [above options] --pdb tests/tests_name.py -k function_name
 '''
 
 import os
+import sys
 import pytest
 import pathlib
 import datajoint as dj
@@ -13,6 +14,7 @@ import datajoint as dj
 # ------------------- SOME CONSTANTS -------------------
 
 _tear_down = True
+verbose = False
 
 pathlib.Path('./tests/user_data').mkdir(exist_ok=True)
 pathlib.Path('./tests/user_data/lab').mkdir(exist_ok=True)
@@ -32,7 +34,18 @@ def write_csv(content, path):
         for line in content:
             f.write(line+'\n')
 
-# ------------------- FIXTURES -------------------
+
+class QuietStdOut:
+    """If verbose set to false, used to quiet tear_down table.delete prints"""
+    def __enter__(self):
+        self._original_stdout = sys.stdout
+        sys.stdout = open(os.devnull, 'w')
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        sys.stdout.close()
+        sys.stdout = self._original_stdout
+
+# ---------------------- FIXTURES ----------------------
 
 
 @pytest.fixture(autouse=True)
@@ -63,9 +76,15 @@ def pipeline():
            'lab': pipeline.lab}
 
     if _tear_down:
-        pipeline.subject.Subject.delete()
-        pipeline.session.Session.delete()
-        pipeline.lab.Lab.delete()
+        if verbose:
+            pipeline.subject.Subject.delete()
+            pipeline.session.Session.delete()
+            pipeline.lab.Lab.delete()
+        else:
+            with QuietStdOut():
+                pipeline.subject.Subject.delete()
+                pipeline.session.Session.delete()
+                pipeline.lab.Lab.delete()
 
 
 @pytest.fixture
@@ -204,7 +223,7 @@ def ingest_lab(pipeline, lab_csv, lab_project_csv, lab_publications_csv,
                keyword_csv_path=lab_keyword_csv_path,
                protocol_csv_path=lab_protocol_csv_path,
                users_csv_path=lab_user_csv_path,
-               project_user_csv_path=lab_project_user_csv_path)
+               project_user_csv_path=lab_project_user_csv_path, verbose=verbose)
     return
 
 
@@ -239,13 +258,13 @@ def subjects_part_csv():
 
 
 @pytest.fixture
-def ingest_subjects(pipeline, subjects_csv, subjects_part_csv):
+def ingest_subjects(pipeline, ingest_lab, subjects_csv, subjects_part_csv):
     """From workflow_session ingest.py, import ingest_subjects, run"""
     from workflow_session.ingest import ingest_subjects
     _, subject_csv_path = subjects_csv
     _, subject_part_csv_path = subjects_part_csv
     ingest_subjects(subject_csv_path=subject_csv_path,
-                    subject_part_csv_path=subject_part_csv_path)
+                    subject_part_csv_path=subject_part_csv_path, verbose=verbose)
     return
 
 
@@ -268,11 +287,11 @@ def sessions_csv():
 
 
 @pytest.fixture
-def ingest_sessions(ingest_subjects, sessions_csv):
+def ingest_sessions(ingest_lab, ingest_subjects, sessions_csv):
     """From workflow_session ingest.py, import ingest_sessions, run"""
     from workflow_session.ingest import ingest_sessions
     _, session_csv_path = sessions_csv
-    ingest_sessions(session_csv_path=session_csv_path)
+    ingest_sessions(session_csv_path=session_csv_path, verbose=verbose)
     return
 
 

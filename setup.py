@@ -1,8 +1,7 @@
-#!/usr/bin/env python
 from setuptools import setup, find_packages
 from os import path
-import sys
 
+pkg_name = 'workflow_session'
 here = path.abspath(path.dirname(__file__))
 
 long_description = """"
@@ -17,6 +16,9 @@ Build a workflow for lab management and animal metadata using DataJoint Elements
 with open(path.join(here, 'requirements.txt')) as f:
     requirements = f.read().splitlines()
 
+with open(path.join(here, pkg_name, 'version.py')) as f:
+    exec(f.read())
+
 setup(
     name='workflow-session',
     version=__version__,
@@ -26,7 +28,7 @@ setup(
     author_email='info@datajoint.com',
     license='MIT',
     url='https://github.com/datajoint/workflow-session',
-    keywords='neuroscience lab-management animal-management session-management datajoint',
+    keywords='neuroscience lab-management animal-management session datajoint',
     packages=find_packages(exclude=['contrib', 'docs', 'tests*']),
     install_requires=requirements,
 )

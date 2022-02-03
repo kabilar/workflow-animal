@@ -1,3 +1,4 @@
+# export COMPOSE_DOCKER_CLI_BUILD=0 # some machines need for smooth --build
 # docker-compose -f docker-compose-test.yaml up --build
 # docker exec -it workflow-session_workflow_1 /bin/bash
 # docker-compose -f docker-compose-test.yaml down
@@ -29,7 +30,7 @@ services:
       - -c
       - |
         echo "------ INTEGRATION TESTS ------"
-        pytest -sv --cov-report term-missing --cov=workflow-session -p no:warnings
+        pytest -sv --cov-report term-missing --cov=workflow_session -p no:warnings
         tail -f /dev/null
     volumes:
       - ./apt_requirements.txt:/tmp/apt_requirements.txt
