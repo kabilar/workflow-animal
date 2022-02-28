@@ -11,12 +11,12 @@ Observes [Semantic Versioning](https://semver.org/spec/v2.0.0.html) standard and
 + Name `workflow-animal` -> `workflow-session`
 
 
-## 0.0.0b1 - 2021-03-24
+## [0.0.0b1] - 2021-03-24
 ### Added
 + First beta release
 
 
-## 0.0.0a1 - 2021-03-18
+## [0.0.0a1] - 2021-03-18
 ### Added
 + Added notebooks
 
