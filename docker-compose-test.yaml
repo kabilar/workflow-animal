@@ -21,7 +21,7 @@ services:
     env_file: .env
     image: workflow_session:0.0.0b2
     environment:
-      - DJ_HOST=workflow-session_db_1
+      - DJ_HOST=db
       - DJ_USER=root
       - DJ_PASS=simple
       - DATABASE_PREFIX=test_
