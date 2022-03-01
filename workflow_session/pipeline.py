@@ -5,12 +5,12 @@ from element_animal import subject, genotyping
 from element_session import session
 
 from element_animal.subject import Subject
-# from element_animal.genotyping import Sequence, BreedingPair, Cage,\
-#                                       SubjectCaging, GenotypeTest
-from element_lab.lab import Source, Lab, Protocol, User, Project, ProjectUser
-from element_lab.lab import ProjectKeywords, ProjectPublication, ProjectSourceCode
-from element_session.session import Session, SessionDirectory, SessionExperimenter
-from element_session.session import SessionNote, ProjectSession
+from element_animal.genotyping import Sequence, BreedingPair, Cage,\
+                                      SubjectCaging, GenotypeTest
+from element_lab.lab import Source, Lab, Protocol, User, Project, ProjectUser, \
+                                                  ProjectKeywords, ProjectPublication, ProjectSourceCode
+from element_session.session import Session, SessionDirectory, SessionExperimenter, \
+                                                                 SessionNote, ProjectSession
 
 if 'custom' not in dj.config:
     dj.config['custom'] = {}
