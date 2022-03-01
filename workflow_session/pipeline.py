@@ -22,7 +22,7 @@ __all__ = ['genotyping', 'session', 'Subject', 'Source', 'Lab', 'Protocol', 'Use
            'ProjectUser', 'Session', 'SessionDirectory', 'SessionExperimenter',
            'SessionNote', 'ProjectSession']
 
-# Activate "lab", "subject", "session" schema -------------
+# Activate "lab", "subject", "session", "genotyping" schemas -------------
 
 lab.activate(db_prefix + 'lab')
 
@@ -31,4 +31,4 @@ subject.activate(db_prefix + 'subject', linking_module=__name__)
 Experimenter = lab.User
 session.activate(db_prefix + 'session', linking_module=__name__)
 
-# genotyping.activate(db_prefix + 'genotyping', linking_module=__name__)
+genotyping.activate(db_prefix + 'genotyping', db_prefix + 'subject', linking_module=__name__)
