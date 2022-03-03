@@ -1,10 +1,6 @@
 FROM datajoint/djlab:py3.8-debian
 
-USER root
-RUN apt-get update -y
-RUN apt-get install git -y
-
-USER anaconda
+USER anaconda:anaconda
 
 RUN mkdir /main/element-lab \
           /main/element-animal \

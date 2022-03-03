@@ -9,7 +9,7 @@ This repository provides demonstrations for:
 Setting up a workflow using different elements (see [pipeline.py](workflow_session/pipeline.py))
 
 ## Workflow architecture
-The lab and experiment subject management workflow presented here uses components from two DataJoint elements (element-lab, element-animal and element-session) assembled together into a functional workflow.
+The lab and experiment subject management workflow presented here uses components from three DataJoint elements (element-lab, element-animal and element-session) assembled together into a functional workflow.
 
 ### element-lab
 
