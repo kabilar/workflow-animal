@@ -13,22 +13,19 @@ def ingest_general(csvs, tables,
         :param tables: list of datajoint tables with ()
         :param verbose: print number inserted (i.e., table length change)
     """
-    for insert, table in zip(csvs, tables):
-        with open(insert, newline='') as f:
+    for csv_filepath, table in zip(csvs, tables):
+        with open(csv_filepath, newline='') as f:
             data = list(csv.DictReader(f, delimiter=','))
         if verbose:
             prev_len = len(table)
         table.insert(data, skip_duplicates=skip_duplicates,
-                     # Ignore Extra because some CSVs feed/mult tables
+                     # Ignore extra fields because some CSVs feed multiple tables
                      ignore_extra_fields=True)
         if verbose:
             insert_len = len(table) - prev_len     # report length change
             print(f'\n---- Inserting {insert_len} entry(s) '
                   + f'into {table.table_name} ----')
 
-    # Future enhancement: permit embedded lists
-    # Currently requires a csv to be listed multiple times
-    # if feeding multiple tables. Could instead take lists of lists.
 
 
 def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
@@ -87,7 +84,6 @@ def ingest_subjects(subject_csv_path='./user_data/subject/subjects.csv',
 
     ingest_general(csvs, tables, skip_duplicates=skip_duplicates, verbose=verbose)
 
-    # TODO: add allele and genotyping data
 
 
 def ingest_sessions(session_csv_path='./user_data/session/sessions.csv',
