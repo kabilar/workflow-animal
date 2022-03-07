@@ -1,0 +1,3 @@
+project,project_description,repository_url,repository_name,codeurl
+ProjA,Example project to populate element-lab,https://github.com/datajoint/element-lab/,element-lab,https://github.com/datajoint/element-lab/tree/main/element_lab
+ProjB,Other example project to populate element-lab,https://github.com/datajoint/element-session/,element-session,https://github.com/datajoint/element-session/tree/main/element_session
