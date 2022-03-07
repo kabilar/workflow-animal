@@ -21,7 +21,7 @@ pathlib.Path('./tests/user_data/lab').mkdir(exist_ok=True)
 pathlib.Path('./tests/user_data/session').mkdir(exist_ok=True)
 pathlib.Path('./tests/user_data/subject').mkdir(exist_ok=True)
 
-# ------------------ GENERAL FUCNTION ------------------
+# ------------------ GENERAL FUNCTIONS ------------------
 
 
 def write_csv(content, path):
@@ -295,41 +295,3 @@ def ingest_sessions(ingest_lab, ingest_subjects, sessions_csv):
     return
 
 
-"""
-# FUTURE FIXTURES, pending sharable example data
-lab_sources_content=["source, source_name, contact_details,\
-                      source_description"]
-lab_sources_csv_path = pathlib.Path('./tests/user_data/lab/sources.csv')
-write_csv(lab_sources_content,lab_sources_csv_path)
-yeild lab_sources_content,lab_sources_csv_path
-lab_sources_csv_path.unlink()
-subject_allele_content=["allele, allele_standard_name,zygosity"]
-subject_allele_csv_path = pathlib.Path('./tests/user_data/subject/allele.csv')
-write_csv(subject_allele_content,subject_allele_csv_path)
-yeild subject_allele_content,subject_allele_csv_path
-subject_allele_csv_path.unlink()
-subject_genotyping_content=[]
-subject_genotyping_csv_path = pathlib.Path('./tests/user_data/subject/\
-                                            genotyping.csv')
-write_csv(subject_genotyping_content,subject_genotyping_csv_path)
-yeild subject_genotyping_content,subject_genotyping_csv_path
-subject_genotyping_csv_path.unlink()
-subject_line_content=["line, line_description, target_phenotype, is_active"]
-subject_line_csv_path = pathlib.Path('./tests/user_data/subject/line.csv')
-write_csv(subject_line_content,subject_line_csv_path)
-yeild subject_line_content,subject_line_csv_path
-subject_line_csv_path.unlink()
-subject_source_content=["allele,source_identifier,source_url,\
-                         expression_data_url"]
-subject_source_csv_path = pathlib.Path('./tests/user_data/subject/source.csv')
-write_csv(subject_source_content,subject_source_csv_path)
-yeild subject_source_content,subject_source_csv_path
-subject_source_csv_path.unlink()
-subject_strain_content=["strain, strain_standard_name, strain_desc"]
-subject_strain_csv_path = pathlib.Path('./tests/user_data/subject/strain.csv')
-write_csv(subject_strain_content,subject_strain_csv_path)
-yeild subject_strain_content,subject_strain_csv_path
-subject_strain_csv_path.unlink()
-subject_subjects_csv_path = pathlib.Path('./tests/user_data/subject/\
-                                          subjects.csv')
-"""

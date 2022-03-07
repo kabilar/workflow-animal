@@ -41,10 +41,11 @@ def ingest_lab(lab_csv_path='./user_data/lab/labs.csv',
     By default, uses data from workflow_session/user_data/lab/
     :param lab_csv_path:      relative path of lab csv
     :param project_csv_path:  relative path of project csv
-    :param pubs_csv_path:     relative path of publication csv
-    :param keyw_csv_path:     relative path of keyword csv
+    :param publication_csv_path:     relative path of publication csv
+    :param keyword_csv_path:     relative path of keyword csv
     :param protocol_csv_path: relative path of protocol csv
     :param users_csv_path:    relative path of users csv
+    :param project_user_csv_path: relative path of project users csv
     :param skip_duplicates=True: datajoint insert function param
     :param verbose: print number inserted (i.e., table length change)
     """
@@ -91,7 +92,7 @@ def ingest_sessions(session_csv_path='./user_data/session/sessions.csv',
     """
     Inserts data from a sessions csv into corresponding session schema tables
     By default, uses data from workflow_session/user_data/session/
-    :param session_csv_path:     relative path of subject csv
+    :param session_csv_path:     relative path of session csv
     :param skip_duplicates=True: datajoint insert function param
     :param verbose: print number inserted (i.e., table length change)
     """

@@ -1,6 +1,6 @@
 '''Tests ingestion into schema tables: Lab, Subject, Session
     1. Assert length of populating data from __init__
-    2. Assert exact matches of inserted data fore key tables
+    2. Assert exact matches of inserted data for key tables
 '''
 
 __all__ = ['dj_config', 'pipeline', 'lab_csv', 'lab_project_csv', 'lab_user_csv',
@@ -51,8 +51,6 @@ def test_ingest_lab(pipeline, ingest_lab,
         assert (lab.Protocol & {'protocol': protocol_values[0]}
                 ).fetch1('protocol_type') == protocol_values[1]
 
-    # Does not have example data:
-    # assert len(lab.Source()) == 0
 
 
 def test_ingest_subjects(pipeline, subjects_csv, subjects_part_csv, ingest_subjects):
@@ -77,8 +75,6 @@ def test_ingest_subjects(pipeline, subjects_csv, subjects_part_csv, ingest_subje
         assert (subject.Subject.User & {'subject': subject_values[0]}
                 ).fetch1('user') == subject_values[2]
 
-    # Does not have example data:
-    # assert len(genotyping.Sequence()) == 0
 
 
 def test_ingest_sessions(pipeline, sessions_csv, ingest_sessions):

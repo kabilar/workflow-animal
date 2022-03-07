@@ -14,7 +14,7 @@ The lab and experiment subject management workflow presented here uses component
 ### element-lab
 
 ![element-lab](
-https://github.com/datajoint/element-lab/raw/main/images/element_lab_diagram.svg)
+https://github.com/datajoint/element-lab/raw/main/images/lab_diagram.svg)
 
 ### element-animal
 
@@ -37,11 +37,11 @@ This workflow serves as an example of the upstream part of a typical data workfl
 
 ## Installation instructions
 
-+ The installation instructions can be found at [datajoint-elements/install.md](
-     https://github.com/datajoint/datajoint-elements/blob/main/install.md).
++ The installation instructions can be found in the [datajoint-elements repository](
+     https://github.com/datajoint/datajoint-elements/blob/main/gh-pages/docs/install.md).
 
 ## Interacting with the DataJoint workflow
 
 + Please refer to the following workflow-specific
 [Jupyter notebooks](/notebooks) for an in-depth explanation of how to run the
-workflow ([1-Explore_Workflow.ipynb](notebooks/1_Explore_Workflow.ipynb).
+workflow ([1-Explore_Workflow.ipynb](notebooks/1_Explore_Workflow.ipynb)).
