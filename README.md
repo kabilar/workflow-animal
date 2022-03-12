@@ -2,21 +2,21 @@
 
 This workflow builds a workflow to save the information of lab management and animal management, using the following datajoint elements
 + [element-lab](https://github.com/datajoint/element-lab)
-+ [element-subject](https://github.com/datajoint/element-subject)
++ [element-animal](https://github.com/datajoint/element-animal)
 
 This repository provides demonstrations for:
 Set up a workflow using different elements (see [workflow_animal/pipeline.py](workflow_animal/pipeline.py))
 
 ## Workflow architecture
-The lab and animal management workflow presented here uses components from two DataJoint elements, element-lab, and element-subject assembled together to a functional workflow.
+The lab and animal management workflow presented here uses components from two DataJoint elements, element-lab, and element-animal assembled together to a functional workflow.
 
 ### element-lab
 
 ![lab](images/lab_diagram.svg)
 
-### element-subject
+### element-animal
 
-element-subject contains two modules, `subject` and `genotyping`.
+element-animal contains two modules, `subject` and `genotyping`.
 
 `subject` contains basic information of subjects.
 ![subject](images/subject_diagram.svg)
@@ -157,7 +157,7 @@ Please refer to the [DataJoint Labbook page](https://github.com/datajoint/datajo
 
 ## Development mode installation
 
-This method allows you to modify the source code for `workflow-calcium-imaging`, `element-calcium-imaging`, `element-subject`, and `element-lab`.
+This method allows you to modify the source code for `workflow-calcium-imaging`, `element-calcium-imaging`, `element-animal`, and `element-lab`.
 
 + Launch a new terminal and change directory to where you want to clone the repositories
     ```
@@ -166,12 +166,12 @@ This method allows you to modify the source code for `workflow-calcium-imaging`,
 + Clone the repositories
     ```
     git clone https://github.com/datajoint/element-lab
-    git clone https://github.com/datajoint/element-subject
+    git clone https://github.com/datajoint/element-animal
     git clone https://github.com/datajoint/workflow-animal
     ```
 + Install each package with the `-e` option
     ```
     pip install -e ./workflow-animal
     pip install -e ./element-lab
-    pip install -e ./element-subject
+    pip install -e ./element-animal
     ```

@@ -1,6 +1,6 @@
 import datajoint as dj
 from element_lab import lab
-from element_subject import subject, genotyping
+from element_animal import subject, genotyping
 from element_lab.lab import Source, Lab, Protocol, User, Location
 
 
