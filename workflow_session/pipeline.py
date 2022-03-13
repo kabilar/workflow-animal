@@ -9,7 +9,7 @@ from element_animal.genotyping import Sequence, BreedingPair, Cage,\
                                       SubjectCaging, GenotypeTest
 from element_lab.lab import Source, Lab, Protocol, User, Project, ProjectUser, \
                                                   ProjectKeywords, ProjectPublication, ProjectSourceCode
-from element_session.session import Session, SessionDirectory, SessionExperimenter, \
+from element_session.session_with_datetime import Session, SessionDirectory, SessionExperimenter, \
                                                                  SessionNote, ProjectSession
 
 if 'custom' not in dj.config:
