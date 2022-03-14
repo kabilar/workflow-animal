@@ -233,6 +233,8 @@ def subjects_csv():
     """ Create a 'subjects.csv' file"""
     subject_content = ["subject,sex,subject_birth_date,subject_description,"
                        + "death_date,cull_method",
+                       "subject3,F,2020-01-01 00:00:01,rich,"
+                       + "2020-10-02 00:00:01,natural causes",
                        "subject5,F,2020-01-01 00:00:01,rich,"
                        + "2020-10-02 00:00:01,natural causes",
                        "subject6,M,2020-01-01 00:00:01,manuel,"
@@ -273,13 +275,13 @@ def ingest_subjects(pipeline, ingest_lab, subjects_csv, subjects_part_csv):
 def sessions_csv():
     """ Create a 'sessions.csv' file"""
     session_csv_path = pathlib.Path('./tests/user_data/session/sessions.csv')
-    session_content = ["subject,project,session_datetime,session_dir,session_note",
-                       "subject5,ProjA,2020-04-15 11:16:38,/subject5/session1,"
-                       + "'Successful data collection, no notes'",
-                       "subject5,ProjA,2020-05-12 04:13:07,subject5\\session1,"
-                       + "'Data collection notes'",
+    session_content = ["subject,project,session_datetime,session_dir,session_note,user",
+                       "subject3,ProjA,2020-05-12 04:13:07,subject3\\session1,"
+                       + "Data collection notes,User1",
+                       "subject5,ProjA,2018-07-03 20:32:28,/subject5/session1,"
+                       + "Successful data collection - no notes,User1",
                        "subject6,ProjA,2021-06-02 14:04:22,/subject6/session1,"
-                       + "'Ambient temp abnormally low'"]
+                       + "Ambient temp abnormally low,User1"]
     write_csv(session_content, session_csv_path)
 
     yield session_content, session_csv_path
