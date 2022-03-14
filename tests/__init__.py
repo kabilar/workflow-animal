@@ -281,7 +281,7 @@ def sessions_csv():
                        "subject5,ProjA,2018-07-03 20:32:28,/subject5/session1,"
                        + "Successful data collection - no notes,User1",
                        "subject6,ProjA,2021-06-02 14:04:22,/subject6/session1,"
-                       + "Ambient temp abnormally low,User1"]
+                       + "Ambient temp abnormally low,User2"]
     write_csv(session_content, session_csv_path)
 
     yield session_content, session_csv_path
