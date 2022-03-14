@@ -9,7 +9,7 @@ def ingest_general(csvs, tables,
         e.g., ingest_general(['./lab_data.csv', './proj_data.csv'],
                                  [lab.Lab(),lab.Project()]
     ingest_general(csvs, tables, skip_duplicates=True)
-        :param csvs: list of relative paths to CSV files
+        :param csvs: list of relative paths to CSV files.  CSV are delimited by commas.
         :param tables: list of datajoint tables with ()
         :param verbose: print number inserted (i.e., table length change)
     """
