@@ -56,7 +56,7 @@ def test_ingest_lab(pipeline, ingest_lab,
 def test_ingest_subjects(pipeline, subjects_csv, subjects_part_csv, ingest_subjects):
     """Check length of subject.Subject"""
     subject = pipeline['subject']
-    assert len(subject.Subject()) == 2, f'Check Subject: len={len(subject.Subject())}'
+    assert len(subject.Subject()) == 3, f'Check Subject: len={len(subject.Subject())}'
     assert len(subject.Subject.Protocol()) == 2, \
         f'Check Subject.Protocol: len={len(subject.Subject.Protocol())}'
     assert len(subject.Subject.User()) == 2, \

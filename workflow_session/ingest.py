@@ -96,9 +96,11 @@ def ingest_sessions(session_csv_path='./user_data/session/sessions.csv',
     :param skip_duplicates=True: datajoint insert function param
     :param verbose: print number inserted (i.e., table length change)
     """
-    csvs = [session_csv_path, session_csv_path, session_csv_path, session_csv_path]
+    csvs = [session_csv_path, session_csv_path, session_csv_path, session_csv_path,
+            session_csv_path]
     tables = [session.Session(), session.SessionDirectory(),
-              session.SessionNote(), session.ProjectSession()]
+              session.SessionNote(), session.ProjectSession(), 
+              session.SessionExperimenter()]
 
     ingest_general(csvs, tables, skip_duplicates=skip_duplicates, verbose=verbose)
 
