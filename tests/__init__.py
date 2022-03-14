@@ -196,7 +196,8 @@ def lab_user_csv():
                         "LabA,Watson,Dr,DrWatson@BakerSt.com,+44 73 8389 1763",
                         "LabB,Dr. Candace Pert,PI,Pert@gmail.com,"
                         + "+44 74 4046 5899",
-                        "LabA,User1,Lab Tech,fake@email.com,+44 1632 960103"]
+                        "LabA,User1,Lab Tech,fake@email.com,+44 1632 960103",
+                        "LabB,User2,Lab Tech,fake2@email.com,+44 1632 960102"]
     lab_user_csv_path = pathlib.Path('./tests/user_data/lab/users.csv')
     write_csv(lab_user_content, lab_user_csv_path)
 
