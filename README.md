@@ -8,7 +8,9 @@ This directory provides an example workflow to save the information related to l
 This repository provides demonstrations for:
 Setting up a workflow using different elements (see [pipeline.py](workflow_session/pipeline.py))
 
-For more information on the DataJoint Elements project, please visit https://elements.datajoint.org.  This work is supported by the National Institutes of Health.
++ See the [Element Session documentation](https://elements.datajoint.org/description/session/) for the background information and development timeline.
+
++ For more information on the DataJoint Elements project, please visit https://elements.datajoint.org.  This work is supported by the National Institutes of Health.
 
 ## Workflow architecture
 The lab and experiment subject management workflow presented here uses components from three DataJoint elements (element-lab, element-animal and element-session) assembled together into a functional workflow.
